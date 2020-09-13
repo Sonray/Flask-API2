@@ -24,3 +24,6 @@ def index():
     myList = zip(news, description, image)
 
     return render_template('index.html', context = myList)
+
+if __name__ == '__main__':
+    app.run(debug=True)
