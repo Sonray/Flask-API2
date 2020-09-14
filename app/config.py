@@ -5,7 +5,9 @@ class Config:
     '''
     General configuration parent class
     '''
-    pass
+    
+    NEWS_API_KEY = os.environ.get('9d31262798e07f97925c0dfc97aa168e')
+    NEWS_API_BASE_URL ='https://api.themoviedb.org/3/movie/{}?api_key={}'
 
 class ProdConfig(Config):
     '''
