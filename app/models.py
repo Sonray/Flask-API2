@@ -11,3 +11,18 @@ class Source:
 		self.description = description
 		self.url = url
 		self.category = category
+
+class Article:
+	'''
+	Article Class to define Article Objects
+	'''
+	def __init__(self,author,title,description,url,image,date):
+		'''
+		Function to initialize Article Objects
+		'''
+		self.author = author
+		self.title = title
+		self.description = description
+		self.url = url
+		self.image = image
+		self.date = date
