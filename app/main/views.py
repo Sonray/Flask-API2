@@ -1,26 +1,21 @@
-from flask import Flask, render_template
-from newsapi import NewsApiClient
+from flask import render_template
+from . import main
+from ..requests import get_sources,get_articles
 
-app = Flask(__name__)
-
-@app.route('/')
+# Views
+@main.route('/')
 def index():
-    newsapi = NewsApiClient(api_key='93b88e88b50744049520cbd817770986')
-    top_headlines = newsapi.get_top_headlines('bbc-news,the-verge')
+	'''
+	View Function that returns the index page and its data
+	'''
+	# Getting sources according to category
+	business_sources = get_sources('business')
+	general_sources = get_sources('general')
+	sport_sources = get_sources('sport')
+	entertainment_sources = get_sources('entertainment')
+	technology_sources = get_sources('technology')
 
-    articles = top_headlines['articles']
+	title = 'Home - Find the latest news highlights'
 
-    description = []
-    news = []
-    image = []
+	return render_template('index.html', title=title,business=business_sources,general=general_sources,entertainment=entertainment_sources,sport=sport_sources,technology=technology_sources)
 
-    for i in range(len(articles)):
-        myarticles = articles[i]
-
-        news.append(myarticles['title'])
-        description.append(myarticles['description'])
-        image.append(myarticles['urlToImage'])
-
-    myList = zip(news, description, image)
-
-    return render_template('index.html', context = myList)
