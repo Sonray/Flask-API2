@@ -32,7 +32,7 @@ def get_sources(category):
 			sources_results = process_sources(sources_results_list)
 
 	return sources_results
-    
+
 def process_sources(sources_results):
 	'''
 	Function  that processes the sources result and transform them to a list of Objects
@@ -49,3 +49,20 @@ def process_sources(sources_results):
 		sources_list.append(source_object)
 
 	return sources_list
+
+def get_articles(source):
+	'''
+	Function that gets the json response to our url request
+	'''
+	get_articles_url = articles_base_url.format(source,api_Key)
+
+	with urllib.request.urlopen(get_articles_url,data=None) as url:
+		get_articles_data = url.read()
+		get_articles_response = json.loads(get_articles_data)
+		articles_results = None
+
+		if get_articles_response['articles']:
+			articles_results_list = get_articles_response['articles']
+			articles_results = process_articles(articles_results_list)
+
+	return articles_results
