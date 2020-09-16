@@ -1,0 +1,29 @@
+.navbar-light{
+	margin-top: 0px;
+	text-align: center;
+	background-color: lightgrey
+}
+
+
+/*SOURCE STYLES*/
+.source_section{
+	display: block;
+}
+.page_name{
+	text-align: center;
+}
+.page_name h1{
+	font-family: 'Black Ops One', cursive;
+}
+
+.source_section_name{
+	text-align: center;
+	font-family: 'Black Ops One', cursive;
+}
+.source:hover{
+	background-color: black
+}
+hr{
+	border-width: 2px;
+	border-color: lightgrey
+}

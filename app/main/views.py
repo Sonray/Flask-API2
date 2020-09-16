@@ -1,33 +1,28 @@
-from flask import render_template
+from flask import render_template,request,redirect,url_for
 from . import main
 from ..requests import get_sources,get_articles
+from ..models import Sources
 
-# Views
+#views
 @main.route('/')
 def index():
 	'''
-	View Function that returns the index page and its data
+	view root page function that returns the index the page and its data
 	'''
-	# Getting sources according to category
-	business_sources = get_sources('business')
-	general_sources = get_sources('general')
-	sport_sources = get_sources('sport')
-	entertainment_sources = get_sources('entertainment')
+	sources = get_sources('business')
+	sports_sources = get_sources('sports')
 	technology_sources = get_sources('technology')
+	entertainment_sources = get_sources('entertainment')
+	title = "News Highlighter"
 
-	title = 'Home - Find the latest news highlights'
+	return render_template('index.html',title = title, sources = sources,sports_sources = sports_sources,technology_sources = technology_sources,entertainment_sources = entertainment_sources)
 
-	return render_template('index.html', title=title,business=business_sources,general=general_sources,entertainment=entertainment_sources,sport=sport_sources,technology=technology_sources)
-
-
-@main.route('/source/<id>')
-def source(id):
+@main.route('/sources/<id>')
+def articles(id):
 	'''
-	View Function that returns the source page and its data
+	view articles page
 	'''
-	# Getting articles according to source chosen
 	articles = get_articles(id)
-	source_id = id.upper()
-	title = f'{source_id} - Top Articles'
+	title = f'NH | {id}'
 
-	return render_template('source.html',title=title,id=source_id, articles=articles)
+	return render_template('articles.html',title= title,articles = articles)
