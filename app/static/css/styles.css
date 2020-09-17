@@ -1,0 +1,12 @@
+.buttons:hover{
+	color:goldenrod;
+	background-color: black;
+}
+h3{
+	color: black;
+	background-color: chartreuse;
+	font-size: larger;
+}
+.thebackground{
+	background-color: red;
+}
